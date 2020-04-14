@@ -45,7 +45,7 @@ yum -y update \
 	beautifulsoup4 \
 	requests \
 	libmagic \
-	htmlmin
+	htmlmin \
 && echo "forward-socks5 / localhost:9050 ." >> /etc/privoxy/config \
 && rm -f /etc/httpd/conf.d/welcome.conf
 
