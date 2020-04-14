@@ -24,7 +24,7 @@ from bs4 import BeautifulSoup
 import magic
 import os
 import re
-
+from htmlmin.minify import html_minify
 
 # Headers
 user_agent = 'Mozilla/5.0 (scihub-downloader; v0.2)'
@@ -84,7 +84,10 @@ if not response:
     sys.stderr.write("Error processing the request.")
     sys.exit()
 
-html = BeautifulSoup(response, 'html.parser')
+
+response1 = html_minify(unicode(response).encode('utf-8'))
+	
+html = BeautifulSoup(response1, 'html.parser')
 file_iframe = html.find('iframe', id='pdf')
 if not hasattr(file_iframe, 'src'):
     sys.stderr.write("Error retrieving the file (may not be available).")
